@@ -21,10 +21,6 @@ export class Tab1Page implements OnInit {
     this.getArticles();
   }
 
-  public loadMoreArticles(): void {
-    this.getArticles();
-  }
-
   public getArticles(): void {
     this.articlesService.getArticles().subscribe((res: ArticlesResponse) => {
       console.log(res);

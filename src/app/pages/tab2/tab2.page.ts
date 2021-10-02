@@ -45,10 +45,6 @@ export class Tab2Page implements AfterViewInit {
     this.getArticlesByCategory();
   }
 
-  public loadMoreArticles(): void {
-    this.getArticlesByCategory();
-  }
-
   private getArticlesByCategory(): void {
     this.articlesService.getArticlesByCategory(this.selectedCategory).subscribe((res: ArticlesResponse) => {
       this.articles = [...this.articles, ...res.articles];

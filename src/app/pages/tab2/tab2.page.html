@@ -11,7 +11,7 @@
 
 <ion-content color="dark">
   <app-articles [articles]="articles"></app-articles>
-  <ion-infinite-scroll threshold="150px" position="bottom" (ionInfinite)="loadMoreArticles($event)">
+  <ion-infinite-scroll threshold="150px" position="bottom" (ionInfinite)="getArticlesByCategory()">
     <ion-infinite-scroll-content class="custom-spinner" loadingSpinner="bubbles"></ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
