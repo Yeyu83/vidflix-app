@@ -5,7 +5,13 @@
 </ion-header>
 
 <ion-content color="dark">
-  <app-films [data]="films"></app-films>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col class="ion-no-padding" *ngFor="let film of films" size="4">
+        <app-film [film]="film" (sendSelectedFilm)="showFilmDetail($event)"></app-film>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="getFilms()">
     <ion-infinite-scroll-content loadingSpinner="bubbles">
     </ion-infinite-scroll-content>

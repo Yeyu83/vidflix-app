@@ -27,6 +27,10 @@
 
 $emphasis-color: #c6538c;
 
+.no-border-radius {
+  border-radius: unset;
+}
+
 ion-segment-button {
   background-color: var(--ion-color-dark);
   color: grey;
@@ -38,6 +42,11 @@ ion-segment-button {
 
 .text-primary {
   color: var(--ion-color-primary);
+}
+
+.film-link  {
+  font-size: 15px;
+  color: $emphasis-color;
 }
 
 .article-source-name {

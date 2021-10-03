@@ -3,7 +3,8 @@ import { Film } from '../../interfaces/film.interface';
 import { FilmsService } from '../../services/films.service';
 import { RowsResponse } from '../../interfaces/rows.response.interface';
 import { FilmsFilter } from 'src/app/classes/film-filters.class';
-import { IonContent, IonInfiniteScroll } from '@ionic/angular';
+import { IonContent, IonInfiniteScroll, ModalController } from '@ionic/angular';
+import { FilmDetailComponent } from '../../components/film-detail/film-detail.component';
 
 @Component({
   selector: 'app-films-tab',
@@ -22,7 +23,8 @@ export class FilmsTabPage {
   private page = 1;
 
   constructor(
-    private readonly filmsService: FilmsService
+    private readonly filmsService: FilmsService,
+    public modalController: ModalController,
   ) { }
 
   ionViewWillEnter(): void {
@@ -41,6 +43,17 @@ export class FilmsTabPage {
       } else {
         this.infiniteScroll.disabled = true;
       }
+    });
+  }
+
+  public showFilmDetail(film: Film): void {
+    this.filmsService.getFilmById(film.id).subscribe(async (res: Film[]) => {
+      const modal = await this.modalController.create({
+        component: FilmDetailComponent,
+        swipeToClose: true,
+        componentProps: { film: res[0] }
+      });
+      return await modal.present();
     });
   }
 }

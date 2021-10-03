@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Film } from '../../interfaces/film.interface';
 
 @Component({
@@ -6,11 +6,8 @@ import { Film } from '../../interfaces/film.interface';
   templateUrl: './film.component.html',
   styleUrls: ['./film.component.scss'],
 })
-export class FilmComponent implements OnInit {
+export class FilmComponent {
   @Input() film: Film;
 
-  constructor() { }
-
-  ngOnInit() {}
-
+  @Output() sendSelectedFilm = new EventEmitter<Film>();
 }
