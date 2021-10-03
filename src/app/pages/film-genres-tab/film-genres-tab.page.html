@@ -1,0 +1,14 @@
+<ion-header no-border>
+  <ion-toolbar color="dark">
+    <ion-title>Films by Genre</ion-title>
+  </ion-toolbar>
+  <ion-segment scrollable mode="md" color="primary" (ionChange)="onSegmentChange($event)">
+    <ion-segment-button [value]="genre.name" *ngFor="let genre of genres" mode="md">
+      <ion-label class="custom-segment-label" text-capitalize>{{ genre.name }}</ion-label>
+    </ion-segment-button>
+  </ion-segment> 
+</ion-header>
+
+<ion-content color="dark">
+  <app-films [data]="films" (sendInfiniteScroll)="getFilmsByGenre()"></app-films>
+</ion-content>

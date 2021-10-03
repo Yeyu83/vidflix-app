@@ -1,0 +1,7 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col *ngFor="let film of films" size="12" size-lg="3" size-md="6">
+      <app-film [film]="film"></app-film>
+    </ion-col>
+  </ion-row>
+</ion-grid>
