@@ -1,11 +1,13 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Films
-    </ion-title>
+    <ion-title>Films</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content color="dark">
   <app-films [data]="films"></app-films>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="getFilms()">
+    <ion-infinite-scroll-content loadingSpinner="bubbles">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
