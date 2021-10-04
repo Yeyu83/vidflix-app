@@ -8,7 +8,7 @@
   <ion-grid fixed>
     <ion-row>
       <ion-col class="ion-no-padding" *ngFor="let film of films" size="4">
-        <app-film [film]="film" (sendSelectedFilm)="showFilmDetail($event)"></app-film>
+        <app-film [film]="film" (sendSelectedFilm)="showActionSheet(film)"></app-film>
       </ion-col>
     </ion-row>
   </ion-grid>

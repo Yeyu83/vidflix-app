@@ -10,13 +10,16 @@
 </ion-header>
 
 <ion-content color="dark">
-  <ion-grid fixed>
-    <ion-row>
-      <ion-col *ngFor="let film of films" size="12" size-lg="3" size-md="6">
-        <app-film [film]="film"></app-film>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-list>
+    <ion-item color="dark" *ngFor="let film of films">
+      <ion-thumbnail slot="end">
+        <img [src]="film.image">
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ film.title }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
   <ion-infinite-scroll threshold="100px" (ionInfinite)="getFilmsByGenre()">
     <ion-infinite-scroll-content loadingSpinner="bubbles">
     </ion-infinite-scroll-content>

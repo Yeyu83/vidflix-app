@@ -18,9 +18,9 @@
   </ion-card-header>
   <ion-card-content>
     <p>{{ film.sinopsis }}</p>
-    <ion-list *ngIf="links.length; else noLinks">
-      <ion-item color="dark" *ngFor="let link of links; let i = index">
-        <ion-label><a class="film-link" [href]="link.url">Link {{ i + 1 }}</a></ion-label>
+    <ion-list color="dark" *ngIf="links?.length; else noLinks">
+      <ion-item (click)="openBrowser(link.url)" color="dark" *ngFor="let link of links; let i = index">
+        <ion-label class="film-link">Link {{ i + 1 }}</ion-label>
       </ion-item>
     </ion-list>
     <ng-template #noLinks>
