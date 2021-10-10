@@ -38,4 +38,8 @@ export class FilmsService {
     const params = new HttpParams().set('title', title);
     return this.http.get<TmdbFilm[]>(`${ environment.api }/films/film`, { params });
   }
+
+  public saveTmdbFilm(film: TmdbFilm): Observable<any> {
+    return this.http.post(`${ environment.api }/films/add`, film);
+  }
 }

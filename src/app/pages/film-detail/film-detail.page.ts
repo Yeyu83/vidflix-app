@@ -2,7 +2,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FilmsService } from '../../services/films.service';
 import { LinksService } from '../../services/links.service';
-import { ToastController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Film } from '../../interfaces/film.interface';
 
@@ -20,7 +19,6 @@ export class FilmDetailPage {
   constructor(
     private linksService: LinksService,
     private filmsService: FilmsService,
-    public toastController: ToastController,
     private iab: InAppBrowser,
     private route: ActivatedRoute,
   ) { }

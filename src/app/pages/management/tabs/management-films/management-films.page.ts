@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, AlertController, ToastController } from '@ionic/angular';
 import { FilmsService } from '../../../../services/films.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TmdbFilm } from '../../../../interfaces/tmdbFilm.interface';
@@ -17,6 +17,8 @@ export class ManagementFilmsPage implements OnInit {
   constructor(
     private menuController: MenuController,
     private filmsService: FilmsService,
+    private alertController: AlertController,
+    private toastController: ToastController,
   ) { }
 
   ngOnInit() {
@@ -36,7 +38,31 @@ export class ManagementFilmsPage implements OnInit {
       });
   }
 
-  public addFilm(film: TmdbFilm): void {
-    console.log(film);
+  public async showSaveFilmAlert(film: TmdbFilm): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Cerar sesión',
+      message: `¿Está seguro que desea añadir ${ film.title } a Vidflix?`,
+      buttons: [
+        {
+          text: 'Guardar',
+          handler: () => this.saveTmdbFilm(film),
+        },
+        { text: 'Cancelar' }
+      ]
+    });
+    await alert.present();
+  }
+
+  public saveTmdbFilm(film: TmdbFilm): void {
+    this.filmsService.saveTmdbFilm(film).subscribe((res: any) => {
+      const message = res.error
+        ? 'No se ha podido guardar la película'
+        : 'La película se ha guardado correctamente';
+      this.showToast(message);
+    });
+  }
+
+  private async showToast(message: string): Promise<void> {
+    await (await this.toastController.create({ message, duration: 2000 })).present();
   }
 }
