@@ -3,7 +3,16 @@
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Vidflix</ion-title>
-        <ion-icon class="ion-padding" slot="end" (click)="login()" name="log-in-outline"></ion-icon>
+        <ng-container *ngIf="!user; else logged">
+          <ion-icon class="ion-padding" slot="end" (click)="showLoginModal()" name="log-in-outline"></ion-icon>
+        </ng-container>
+        <ng-template #logged>
+          <div class="ion-padding" slot="start">
+            <ion-icon class="ion-padding-end" name="person-outline"></ion-icon>
+            <span>{{ user.nickname }}</span>
+          </div>
+          <ion-icon (click)="showLogoutAlert()" slot="end" class="ion-padding-end" name="log-out-outline"></ion-icon>
+        </ng-template>
       </ion-toolbar>
     </ion-header>
     <ion-content>

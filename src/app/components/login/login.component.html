@@ -1,0 +1,26 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Formulario de Login</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+        <span>Cerrar</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="form">
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre de usuario</ion-label>
+      <ion-input formControlName="nickname" type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="password" type="text"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
+<ion-button (click)="verifyLogin()">Aceptar</ion-button>
+
