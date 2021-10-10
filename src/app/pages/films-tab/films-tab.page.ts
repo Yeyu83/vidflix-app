@@ -3,8 +3,9 @@ import { Film } from '../../interfaces/film.interface';
 import { FilmsService } from '../../services/films.service';
 import { RowsResponse } from '../../interfaces/rows.response.interface';
 import { FilmsFilter } from 'src/app/classes/film-filters.class';
-import { ActionSheetController, IonContent, IonInfiniteScroll, ModalController } from '@ionic/angular';
-import { FilmDetailComponent } from '../../components/film-detail/film-detail.component';
+import { IonContent, IonInfiniteScroll, MenuController, ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { SearchComponent } from 'src/app/components/search/search.component';
 
 @Component({
   selector: 'app-films-tab',
@@ -23,9 +24,10 @@ export class FilmsTabPage {
   private page = 1;
 
   constructor(
+    private readonly router: Router,
     private readonly filmsService: FilmsService,
+    private menuController: MenuController,
     public modalController: ModalController,
-    public actionSheetController: ActionSheetController,
   ) { }
 
   ionViewWillEnter(): void {
@@ -47,30 +49,31 @@ export class FilmsTabPage {
     });
   }
 
-  public async showActionSheet(film: Film) {
-    const actionSheet = await this.actionSheetController.create({
-      header: film.title,
-      buttons: [
-      {
-        text: 'Detail',
-        handler: () => this.showFilmDetail(film)
-      },
-      {
-        text: 'Cancel',
-        role: 'cancel'
-      }]
-    });
-    await actionSheet.present();
+  public navigateToFilmDetail(film: Film): void {
+    this.router.navigate(['film-detail', film.id]);
   }
 
-  public showFilmDetail(film: Film): void {
-    this.filmsService.getFilmById(film.id).subscribe(async (res: Film[]) => {
-      const modal = await this.modalController.create({
-        component: FilmDetailComponent,
-        swipeToClose: true,
-        componentProps: { film: res[0] }
-      });
-      return await modal.present();
+  public async showSearchModal(): Promise<void> {
+    const modal = await this.modalController.create({
+      component: SearchComponent,
     });
+    modal.onDidDismiss().then(data => {
+      if (data.data) {
+        this.filters = data.data;
+        this.restoreFilmsList();
+        this.getFilms();
+      }
+    });
+    return await modal.present();
+  }
+
+  public showMenu(): void {
+    this.menuController.open('main-menu');
+  }
+
+  private restoreFilmsList(): void {
+    this.films = [];
+    this.page = 1;
+    this.infiniteScroll.disabled = false;
   }
 }

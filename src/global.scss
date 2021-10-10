@@ -25,35 +25,6 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-$emphasis-color: #c6538c;
-
-.no-border-radius {
-  border-radius: unset;
-}
-
-ion-segment-button {
-  background-color: var(--ion-color-dark);
-  color: grey;
-}
-
-.custom-segment-label {
-  color: $emphasis-color;
-}
-
-.text-primary {
+.menu-list span.active {
   color: var(--ion-color-primary);
-}
-
-.film-link  {
-  font-size: 15px;
-  color: $emphasis-color;
-}
-
-.article-source-name {
-  font-size: 12px;
-  color: $emphasis-color;
-}
-
-.custom-spinner {
-  --color: $emphasis-color;
 }

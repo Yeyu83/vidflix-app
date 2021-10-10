@@ -1,3 +1,21 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="main-menu" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>Vidflix</ion-title>
+        <ion-icon class="ion-padding" slot="end" (click)="login()" name="log-in-outline"></ion-icon>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list class="menu-list">
+        <ion-menu-toggle *ngFor="let item of menuItems; let i = index">
+          <ion-item (click)="selectItem(i)" [routerLink]="item.link">
+            <ion-icon *ngIf="item.icon" [name]="item.icon"></ion-icon>
+            <span [class.active]="item.active">{{ item.title }}</span>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

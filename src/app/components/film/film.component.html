@@ -1,4 +1,4 @@
-<ion-card class="no-border-radius" (click)="sendSelectedFilm.emit(film)" color="dark">
+<ion-card class="no-border-radius" (click)="sendSelectedFilm.emit(film)">
   <ion-card-content class="ion-no-padding">
     <ion-img *ngIf="film.image" [alt]="film.title" [src]="film.image"></ion-img>
   </ion-card-content>

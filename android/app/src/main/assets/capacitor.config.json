@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.starter",
-	"appName": "noticias",
+	"appName": "vidflix",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

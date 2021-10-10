@@ -1,0 +1,28 @@
+
+<ng-container *ngIf="film">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        <span class="ion-padding">{{ film.title }}</span>
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-back-button text="Volver" icon="chevron-back-outline"></ion-back-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <div class="ion-padding">
+      <ion-img *ngIf="film.image" [alt]="film.title" [src]="film.image"></ion-img>
+      <p>{{ film.sinopsis }}</p>
+      <small class="ion-padding">{{ film.year }}</small>
+      <ion-list *ngIf="links?.length; else noLinks">
+        <ion-item (click)="openBrowser(link.url)" *ngFor="let link of links; let i = index">
+          <ion-label class="film-link">Link {{ i + 1 }}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ng-template #noLinks>
+        <p class="film-link ion-padding">No hay links.</p>
+      </ng-template>
+    </div>
+  </ion-content>
+</ng-container>

@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Búsqueda de películas</ion-title>
+    <ion-buttons slot="end">
+      <ion-button slot (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+        <span>Cerrar</span>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="form">
+    <ion-item lines="full">
+      <ion-label position="floating">Título</ion-label>
+      <ion-input formControlName="title" type="text"></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Desde</ion-label>
+      <ion-select formControlName="desde">
+        <ion-select-option *ngFor="let year of years" [value]="year">{{ year }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label>Hasta</ion-label>
+      <ion-select formControlName="hasta">
+        <ion-select-option *ngFor="let year of years" [value]="year">{{ year }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-list [formGroup]="form.controls.genres">
+      <ion-item lines="full" *ngFor="let genre of form.controls.genres.value | keyvalue">
+        <ion-label>{{ genre.key | formatGenreTitle : genres }}</ion-label>
+        <ion-checkbox slot="start" [formControlName]="genre.key" [value]="genre.value"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </form>
+</ion-content>
+<ion-button (click)="search()">Buscar</ion-button>
+
