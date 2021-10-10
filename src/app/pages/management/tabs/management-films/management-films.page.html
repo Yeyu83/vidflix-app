@@ -8,8 +8,37 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-  <p class="ion-padding">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Est tenetur eligendi voluptatum facilis sed provident nulla inventore, reprehenderit minima necessitatibus ex a vitae soluta possimus molestiae cumque molestias, hic quo.
-  </p>
+<ion-content class="ion-padding">
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-input formControlName="title"></ion-input>
+      <ion-buttons>
+        <ion-button size="small" slot="end" expand="full" (click)="search()">
+          <ion-icon size="small" name="search-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </form>
+  <ion-list class="ion-padding-top" *ngIf="films.length">
+    <ion-item-sliding *ngFor="let film of films">
+      <ion-item-options side="end">
+        <ion-item-option (click)="addFilm(film)">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+      <ion-item>
+        <ion-row>
+          <ion-col size="2">
+            <ion-img [src]="'https://image.tmdb.org/t/p/original/' + film.poster_path"></ion-img>
+          </ion-col>
+          <ion-col size="8">
+            <small>{{ film.title }} ({{ film.release_date }})</small>
+          </ion-col>
+          <ion-col size="2">
+            {{ film.vote_average | number}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

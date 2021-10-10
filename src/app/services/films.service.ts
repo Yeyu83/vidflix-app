@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Film } from '../interfaces/film.interface';
 import { Filter } from '../interfaces/filter.interface';
+import { TmdbFilm } from '../interfaces/tmdbFilm.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,10 @@ export class FilmsService {
       fromObject: { ...filter, genres: JSON.stringify(filter.genres), page: String(filter.page) }
     });
     return this.http.get<RowsResponse<Film>>(`${ environment.api }/films/filter`, { params });
+  }
+
+  public getTmdbFilmByTitle(title: string): Observable<TmdbFilm[]> {
+    const params = new HttpParams().set('title', title);
+    return this.http.get<TmdbFilm[]>(`${ environment.api }/films/film`, { params });
   }
 }
