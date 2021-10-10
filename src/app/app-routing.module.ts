@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'film-detail/:filmId',
     loadChildren: () => import('./pages/film-detail/film-detail.module').then( m => m.FilmDetailPageModule)
   },
+  {
+    path: 'management',
+    loadChildren: () => import('./pages/management/management.module').then( m => m.ManagementPageModule)
+  },
 ];
 @NgModule({
   imports: [

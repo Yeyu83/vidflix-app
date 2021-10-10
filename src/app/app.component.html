@@ -19,7 +19,7 @@
       <ion-list class="menu-list">
         <ion-menu-toggle *ngFor="let item of menuItems; let i = index">
           <ion-item (click)="selectItem(i)" [routerLink]="item.link">
-            <ion-icon *ngIf="item.icon" [name]="item.icon"></ion-icon>
+            <ion-icon class="ion-padding-end" *ngIf="item.icon" [name]="item.icon"></ion-icon>
             <span [class.active]="item.active">{{ item.title }}</span>
           </ion-item>
         </ion-menu-toggle>

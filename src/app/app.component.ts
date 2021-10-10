@@ -14,11 +14,11 @@ export class AppComponent implements OnInit {
   public user: Partial<User>;
 
   public menuItems: MenuItem[] = [
-    { title: 'Películas', admin: false, active: true, link: '/films/all-films', icon: '' },
-    { title: 'Favoritos', admin: false, active: false, link: '/favourites', icon: '' },
-    { title: 'Administración', admin: false, active: false, link: '/management/management-films', icon: '' },
-    { title: 'Comunidad', admin: false, active: false, link: '/community', icon: '' },
-    { title: 'Muro', admin: false, active: false, link: '/wall', icon: '' },
+    { title: 'Películas', admin: false, active: true, link: 'tabs/films', icon: 'film-outline' },
+    { title: 'Favoritos', admin: false, active: false, link: '', icon: 'heart-outline' },
+    { title: 'Administración', admin: false, active: false, link: '/management', icon: 'cog-outline' },
+    { title: 'Comunidad', admin: false, active: false, link: '', icon: 'people-circle-outline' },
+    { title: 'Muro', admin: false, active: false, link: '', icon: 'grid-outline' },
   ];
 
   constructor(
