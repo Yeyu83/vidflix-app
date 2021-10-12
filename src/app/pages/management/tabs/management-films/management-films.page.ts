@@ -40,7 +40,7 @@ export class ManagementFilmsPage implements OnInit {
 
   public async showSaveFilmAlert(film: TmdbFilm): Promise<void> {
     const alert = await this.alertController.create({
-      header: 'Cerar sesión',
+      header: 'Añadir película',
       message: `¿Está seguro que desea añadir ${ film.title } a Vidflix?`,
       buttons: [
         {

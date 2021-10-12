@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from './interfaces/menu-item.interface';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController, AlertController, MenuController } from '@ionic/angular';
 import { LoginComponent } from './components/login/login.component';
 import { User } from './interfaces/user.interface';
 import { StorageService } from './services/storage.service';
@@ -14,9 +14,9 @@ export class AppComponent implements OnInit {
   public user: Partial<User>;
 
   public menuItems: MenuItem[] = [
-    { title: 'Películas', admin: false, active: true, link: 'tabs/films', icon: 'film-outline' },
+    { title: 'Películas', admin: false, active: true, link: 'tabs/films', icon: 'videocam-outline' },
     { title: 'Favoritos', admin: false, active: false, link: '', icon: 'heart-outline' },
-    { title: 'Administración', admin: false, active: false, link: '/management', icon: 'cog-outline' },
+    { title: 'Management', admin: false, active: false, link: '/management', icon: 'cog-outline' },
     { title: 'Comunidad', admin: false, active: false, link: '', icon: 'people-circle-outline' },
     { title: 'Muro', admin: false, active: false, link: '', icon: 'grid-outline' },
   ];
@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
     private storageService: StorageService,
     private userService: UserService,
     public alertController: AlertController,
+    private menuController: MenuController,
   ) { }
 
   async ngOnInit() {
@@ -48,6 +49,7 @@ export class AppComponent implements OnInit {
     modal.onDidDismiss().then(data => {
       if (data.data) {
         this.user = data.data;
+        this.menuController.close('main-menu');
       }
     });
     return await modal.present();
@@ -72,5 +74,6 @@ export class AppComponent implements OnInit {
     this.user = null;
     this.userService.unsetUser();
     this.storageService.remove('user');
+    this.menuController.close('main-menu');
   }
 }
